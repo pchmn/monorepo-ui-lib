@@ -19,7 +19,7 @@
     "build:docs": "yarn --cwd packages/docs build",
     "build": "yarn build:lib && yarn --cwd packages/docs install && yarn build:docs",
     "build:ci": "yarn build",
-    "postbuild:ci": "rm -rf dist && mkdir dist && cp -r packages/docs/dist dist"
+    "postbuild:ci": "rm -rf dist && mkdir dist && cp -r packages/docs/dist/. dist"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
