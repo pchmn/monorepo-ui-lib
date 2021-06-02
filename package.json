@@ -17,7 +17,7 @@
     "dev:docs": "yarn --cwd packages/docs dev",
     "serve:docs": "yarn --cwd packages/docs serve",
     "build:docs": "yarn --cwd packages/docs build",
-    "build": "yarn build:lib && yarn build:docs",
+    "build": "yarn build:lib && yarn --cwd packages/docs install && yarn build:docs",
     "build:ci": "yarn build",
     "postbuild:ci": "rm -rf dist && mkdir dist && cp -r packages/docs/dist dist"
   },
