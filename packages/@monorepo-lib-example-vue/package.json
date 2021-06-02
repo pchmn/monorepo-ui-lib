@@ -6,6 +6,9 @@
   "main": "dist/vue.umd.js",
   "module": "dist/vue.es.js",
   "typings": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
