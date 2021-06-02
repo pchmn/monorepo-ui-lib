@@ -16,5 +16,9 @@ export default defineComponent({
 <style scoped>
 button {
   background-color: #42b983;
+  border-radius: 2rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
 }
 </style>
