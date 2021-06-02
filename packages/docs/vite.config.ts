@@ -13,6 +13,7 @@ if (process.env.APP_ENV === 'development') {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  base: '/monorepo-ui-lib/',
   resolve: {
     alias
   },
