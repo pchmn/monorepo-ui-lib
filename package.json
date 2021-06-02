@@ -1,6 +1,6 @@
 {
   "name": "monorepo-ui-lib-ts",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "repository": "https://github.com/pchmn/monorepo-ui-lib.git",
   "author": "pchmn",
   "license": "MIT",

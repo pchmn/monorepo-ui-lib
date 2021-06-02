@@ -1,6 +1,6 @@
 {
   "name": "@monorepo-lib-example/vue",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "pchmn",
   "license": "MIT",
   "main": "dist/vue.umd.js",
