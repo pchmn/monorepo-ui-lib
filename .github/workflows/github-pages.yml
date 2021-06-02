@@ -3,30 +3,30 @@
 name: Github Pages
 
 # Uncomment this part for the workflow to be triggered
-# on:
-#   release:
-#     # Run every time a github release is created
-#     types: [created]
-#   push:
-#     # Run only on main branch
-#     branches:
-#       - "main"
-#     # Run only if files modified are not in lib package
-#     # and are not github docs
-#     paths-ignore:
-#       - "packages/lib/**"
-#       - "*.md"
-#       - ".github/docs/**"
-#   pull_request:
-#     # Run only on main branch
-#     branches:
-#       - "main"
-#     # Run only if files modified are not in lib package
-#     # and are not github docs
-#     paths-ignore:
-#       - "packages/lib/**"
-#       - "*.md"
-#       - ".github/docs/**"
+on:
+  release:
+    # Run every time a github release is created
+    types: [created]
+  push:
+    # Run only on main branch
+    branches:
+      - "vue-example"
+    # Run only if files modified are not in @monorepo-lib-example-vue package
+    # and are not github docs
+    paths-ignore:
+      - "packages/@monorepo-lib-example-vue/**"
+      - "*.md"
+      - ".github/docs/**"
+  pull_request:
+    # Run only on main branch
+    branches:
+      - "main"
+    # Run only if files modified are not in @monorepo-lib-example-vue package
+    # and are not github docs
+    paths-ignore:
+      - "packages/@monorepo-lib-example-vue/**"
+      - "*.md"
+      - ".github/docs/**"
 
 env:
   GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -94,8 +94,8 @@ jobs:
     # Manual deployment
     # See https://devblogs.microsoft.com/devops/i-need-manual-approvers-for-github-actions-and-i-got-them-now/
     environment:
-      name: username.github.io/example
-      url: https://username.github.io/example/
+      name: pchmn.github.io/monorepo-ui-lib
+      url: https://pchmn.github.io/monorepo-ui-lib/
     steps:
       - uses: actions/checkout@v2
         with:

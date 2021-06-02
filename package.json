@@ -10,10 +10,10 @@
   ],
   "scripts": {
     "postinstall": "rm -rf ./.git/hooks && cp -r ./.githooks/ ./.git/hooks/",
-    "dev:lib": "yarn --cwd packages/lib dev",
-    "build:lib": "yarn --cwd packages/lib build",
-    "test:lib": "yarn --cwd packages/lib test",
-    "test:ci:lib": "yarn --cwd packages/la-danze-ui test:ci",
+    "dev:lib": "yarn --cwd packages/@monorepo-lib-example-vue dev",
+    "build:lib": "yarn --cwd packages/@monorepo-lib-example-vue build",
+    "test:lib": "yarn --cwd packages/@monorepo-lib-example-vue test",
+    "test:ci:lib": "yarn --cwd packages/@monorepo-lib-example-vue test:ci",
     "dev:docs": "yarn --cwd packages/docs dev",
     "serve:docs": "yarn --cwd packages/docs serve",
     "build:docs": "yarn --cwd packages/docs build",
@@ -30,6 +30,7 @@
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-vue": "^7.10.0",
     "semantic-release": "^17.4.3",
     "typescript": "^4.1.3"
   }

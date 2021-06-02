@@ -10,6 +10,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended", // Use the recommended rules from @typescript-eslint/eslint-plugin
     "prettier/@typescript-eslint", // Use eslint-config-prettier to disable ESLint formatting rules from @typescript-eslint/eslint-plugin that would conflict with Prettier
     "plugin:prettier/recommended", // Enables eslint-plugin-prettier to display Prettier errors as ESLint errors
+    "plugin:vue/vue3-recommended"
   ],
   parser: "@typescript-eslint/parser", // Specifies the ESLint parser
   parserOptions: {

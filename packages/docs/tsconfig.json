@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@monorepo-lib-example/vue": [
+        "../@monorepo-lib-example-vue/src/index"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "../@monorepo-lib-example-vue/src"
+  ],
+  "exclude": [
+    "../@monorepo-lib-example-vue/src/**/*.test.ts",
+    "../@monorepo-lib-example-vue/src/shims-vue.d.ts",
+    "../@monorepo-lib-example-vue/src/vite-env.d.ts",
+  ]
+}

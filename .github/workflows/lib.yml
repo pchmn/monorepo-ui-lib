@@ -3,36 +3,36 @@
 name: Lib
 
 # Uncomment this part for the workflow to be triggered
-# on:
-#   push:
-#     # Run on all branches excepted gh-pages
-#     branches:
-#       - "**"
-#       - "!gh-pages"
-#     # Ignore all tags, because release commits (where tags are) already trigged workflow
-#     # so it prevents workflow to be launched twice for same changes
-#     tags-ignore:
-#       - "*.*"
-#     # Run only if files modified are not in demo or docs package
-#     # and are not github docs
-#     paths-ignore:
-#       - "packages/docs/**"
-#       - "*.md"
-#       - ".github/docs/**"
-#   pull_request:
-#     # Run only on main branch
-#     branches:
-#       - "main"
-#     # Ignore all tags, because release commits (where tags are) already trigged workflow
-#     # so it prevents workflow to be launched twice for same changes
-#     tags-ignore:
-#       - "*.*"
-#     # Run only if files modified are not in demo or docs package
-#     # and are not github docs
-#     paths-ignore:
-#       - "packages/docs/**"
-#       - "*.md"
-#       - ".github/docs/**"
+on:
+  push:
+    # Run on all branches excepted gh-pages
+    branches:
+      - "**"
+      - "!gh-pages"
+    # Ignore all tags, because release commits (where tags are) already trigged workflow
+    # so it prevents workflow to be launched twice for same changes
+    tags-ignore:
+      - "*.*"
+    # Run only if files modified are not in demo or docs package
+    # and are not github docs
+    paths-ignore:
+      - "packages/docs/**"
+      - "*.md"
+      - ".github/docs/**"
+  pull_request:
+    # Run only on main branch
+    branches:
+      - "main"
+    # Ignore all tags, because release commits (where tags are) already trigged workflow
+    # so it prevents workflow to be launched twice for same changes
+    tags-ignore:
+      - "*.*"
+    # Run only if files modified are not in demo or docs package
+    # and are not github docs
+    paths-ignore:
+      - "packages/docs/**"
+      - "*.md"
+      - ".github/docs/**"
 
 env:
   GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -73,76 +73,76 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
 
-      # Build lib (packages/lib)
+      # Build lib (packages/@monorepo-lib-example-vue)
       - name: BUILD
         run: yarn build:lib
 
-      # Test lib (packages/lib)
-      - name: TEST
-        run: yarn test:ci:lib
+      # Test lib (packages/@monorepo-lib-example-vue)
+      # - name: TEST
+      #   run: yarn test:ci:lib
 
       # ----------------------------------
       #         Upload artifacts
       # ----------------------------------
-      - uses: actions/upload-artifact@v2
-        with:
-          name: coverage
-          path: packages/lib/coverage/lcov.info
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     name: coverage
+      #     path: packages/@monorepo-lib-example-vue/coverage/lcov.info
 
       - uses: actions/upload-artifact@v2
         with:
           name: lib-dist
-          path: packages/lib/dist/
+          path: packages/@monorepo-lib-example-vue/dist/
       # ----------------------------------
       #         Upload artifacts
       # ----------------------------------
 
   # Coverage (lib package)
-  coverage:
-    name: Coverage
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          token: ${{ env.GITHUB_TOKEN }}
+  # coverage:
+  #   name: Coverage
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+  #         token: ${{ env.GITHUB_TOKEN }}
 
-      # ----------------------------------
-      #    Download coverage artifacts
-      # ----------------------------------
-      - uses: actions/download-artifact@v2
-        with:
-          name: coverage
-      # ----------------------------------
-      #    Download coverage artifacts
-      # ----------------------------------
+  #     # ----------------------------------
+  #     #    Download coverage artifacts
+  #     # ----------------------------------
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: coverage
+  #     # ----------------------------------
+  #     #    Download coverage artifacts
+  #     # ----------------------------------
 
-      # Update coverage file to codecov
-      - name: CODECOV
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: lcov.info
+  #     # Update coverage file to codecov
+  #     - name: CODECOV
+  #       uses: codecov/codecov-action@v1
+  #       with:
+  #         token: ${{ secrets.CODECOV_TOKEN }}
+  #         files: lcov.info
 
-      # Codacy analysis
-      - name: CODACY
-        uses: codacy/codacy-coverage-reporter-action@master
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: lcov.info
+  #     # Codacy analysis
+  #     - name: CODACY
+  #       uses: codacy/codacy-coverage-reporter-action@master
+  #       with:
+  #         project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+  #         coverage-reports: lcov.info
 
-      # Run sonar scan
-      - name: SONAR
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #     # Run sonar scan
+  #     - name: SONAR
+  #       uses: sonarsource/sonarcloud-github-action@master
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   # Release lib package
   release:
     name: Release
     # Launch only on main branch
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/vue-example'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -176,7 +176,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: lib-dist
-          path: packages/lib/dist/
+          path: packages/@monorepo-lib-example-vue/dist/
       # ----------------------------------
       #     Download dist artifacts
       # ----------------------------------
@@ -189,7 +189,7 @@ jobs:
 
       # Copy README.md to lib package (for npm)
       - name: COPY README.md
-        run: cp README.md packages/lib/
+        run: cp README.md packages/@monorepo-lib-example-vue/
 
       # Release
       - name: RELEASE
