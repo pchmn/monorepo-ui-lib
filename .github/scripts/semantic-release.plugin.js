@@ -26,6 +26,8 @@ function parseObject(fileConfig, versionKey, oldVersion, newVersion) {
 }
 
 function updateFileVersion(filePath, versionKey, oldVersion, newVersion) {
+  // If oldVersion is undefined, there is no previous release so oldVersion is 0.0.0
+  oldVersion = oldVersion ? oldVersion : '0.0.0';
   try {
 
     const content = fs.readFileSync(filePath, 'utf8').trim();
