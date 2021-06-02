@@ -4,8 +4,9 @@
     ["@semantic-release/commit-analyzer", {
       "preset": "angular",
       "releaseRules": [
-        {"scope": "demo", "release": false},
-        {"scope": "conf", "release": false}
+        {"type": "demo", "release": false},
+        {"type": "conf", "release": false},
+        {"type": "style", "release": "patch"}
       ]
     }],
     "@semantic-release/release-notes-generator",

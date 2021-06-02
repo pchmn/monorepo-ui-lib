@@ -21,4 +21,7 @@ button {
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
+button:hover {
+  background-color: #42b983b6;
+}
 </style>
